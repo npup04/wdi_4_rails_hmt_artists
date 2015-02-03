@@ -23,6 +23,31 @@
     <%= f.label :dob %><br>
     <%= f.date_select :dob %>
   </div>
+
+  <div>
+    <%= f.label :songs, value: 'Add Songs' %> <br>
+    <!-- Generate an html select, the list will be the other songs not by this artist -->
+    <%= f.collection_select :song_ids, @artist.other_songs, :id, :title %>
+  </div>
+
+
+  <%= f.fields_for :songs do |s| %>
+  <fieldset>
+    <div>
+      <%= s.label :title %>
+      <%= s.text_field :title %>
+    </div>
+    <div>
+      <%= s.label :duration %>
+      <%= s.number_field :duration %>
+    </div>
+    <div>
+      <%= s.label :price %>
+      <%= s.text_field :price, value: s.object.price.round(2) %>
+    </div>
+  </fieldset>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

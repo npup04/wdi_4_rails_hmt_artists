@@ -15,5 +15,18 @@
   <%= @artist.dob %>
 </p>
 
+<!-- Show all songs for this artist -->
+<h3>
+  <% @artist.songs.each do |song| %>
+  <ul>
+    <li>Title: <%= song.title %></li>
+    <li>Duration: <%= song.duration %></li>
+    <li>Price: <%= song.price %></li>
+    <hr>
+  </ul>
+  <% end %>
+</h3>
+
+
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>
